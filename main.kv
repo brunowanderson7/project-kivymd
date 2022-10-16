@@ -46,6 +46,9 @@ ManagerWindow:
             text: 'Sobre'
             pos_hint: {'center_x': 0.5,'center_y': 0.28}
             size_hint: 0.3, 0.1
+            on_release:
+                app.root.current = 'aboutwindow'
+                root.manager.transition.direction = 'left'
         
 
         MDRoundFlatButton:
@@ -252,3 +255,41 @@ ManagerWindow:
             color: '#FFAC1C'
             halign: 'center'
             pos_hint: {'center_x': 0.50,'center_y': 0.31}
+
+
+
+<AboutWindow>:
+    name: 'aboutwindow'
+
+    FloatLayout:
+
+        MDBottomAppBar:
+            MDTopAppBar:
+                title: "Coverter Fahrenheit"
+                type: 'bottom'
+                icon: "arrow-left-circle"
+                mode: 'end'
+                on_action_button:
+                    app.root.current = 'mainwindow'
+                    root.manager.transition.direction = 'right'
+        MDLabel:
+            text: 'Application referring to an [Object-Oriented Programming II] discipline activity'
+            pos_hint: {"center_x": 0.54, "center_y": 0.9}
+
+
+
+        MDIcon:
+            icon: "gmail"
+            pos_hint: {"center_x": 0.06, "center_y": 0.8}
+        
+        MDLabel:
+            text: 'brunowanderson8@gmail.com'
+            pos_hint: {"center_x": 0.6, "center_y": 0.8}
+        
+        MDIcon:
+            icon: "github"
+            pos_hint: {"center_x": 0.06, "center_y": 0.7}
+        
+        MDLabel:
+            text: 'https://github.com/brunowanderson7/project-kivymd'
+            pos_hint: {"center_x": 0.6, "center_y": 0.7}

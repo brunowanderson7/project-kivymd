@@ -112,10 +112,10 @@ class AboutWindow(Screen):
 
 class MyApp(MDApp):
     def build(self):
-        self.title = "My Aplication"
+        self.title = "Temperature Convert"
         self.theme_cls.theme_style = "Dark"
         self.theme_cls.primary_palette = "Orange"
-        return Builder.load_file("menu.kv")
+        return Builder.load_file("main.kv")
     
     def close(self):
         self.stop()
