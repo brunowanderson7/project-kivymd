@@ -1,0 +1,254 @@
+
+ManagerWindow:
+    MainWindow:
+
+    ConvertWindow:
+
+    CelsiusWindow:
+
+    FahrenheitWindow:
+
+    KelvinWindow:
+
+    AboutWindow:
+
+
+
+
+<MainWindow>:
+    name: "mainwindow"
+
+    FloatLayout:
+
+
+        MDTopAppBar:
+            title: "Menu Principal"
+            pos_hint: {'center_x': 0.5,'center_y': 0.95}
+
+        Image:
+            source: 'img.png'
+            allow_sthetch: True
+            pos_hint: {'center_x': 0.5,'center_y': 0.7}
+            size_hint: 0.6, 0.7
+
+
+
+        MDRoundFlatButton:
+            text: 'Coverter Temperatura'
+            pos_hint: {'center_x': 0.5,'center_y': 0.4}
+            size_hint: 0.3, 0.1
+            on_release:
+                app.root.current = "convertwindow"
+                root.manager.transition.direction = 'left'
+        
+
+        MDRoundFlatButton:
+            text: 'Sobre'
+            pos_hint: {'center_x': 0.5,'center_y': 0.28}
+            size_hint: 0.3, 0.1
+        
+
+        MDRoundFlatButton:
+            text: 'Sair'
+            pos_hint: {'center_x': 0.5,'center_y': 0.16}
+            size_hint: 0.3, 0.1
+            on_release:
+                app.close()
+        
+
+<ConvertWindow>:
+    name: "convertwindow"
+
+    FloatLayout:
+
+        MDBottomAppBar:
+            MDTopAppBar:
+                title: "Coverter Temperaturas"
+                type: 'bottom'
+                icon: "arrow-left-circle"
+                mode: 'end'
+                on_action_button:
+                    app.root.current = 'mainwindow'
+                    root.manager.transition.direction = 'right'
+
+        MDRoundFlatButton:
+            text: 'Celsius'
+            pos_hint: {'center_x': 0.5,'center_y': 0.3}
+            size_hint: 0.3, 0.1
+            on_release:
+                app.root.current = 'celsiuswindow'
+                root.manager.transition.direction = 'left'
+        
+        MDRoundFlatButton:
+            text: 'Fahrenheit'
+            pos_hint: {'center_x': 0.5,'center_y': 0.42}
+            size_hint: 0.3, 0.1
+            on_release:
+                app.root.current = 'fahrenheitwindow'
+                root.manager.transition.direction = 'left'
+            
+
+        MDRoundFlatButton:
+            text: 'Kelvin'
+            pos_hint: {'center_x': 0.5,'center_y': 0.54}
+            size_hint: 0.3, 0.1
+            on_release:
+                app.root.current = 'kelvinwindow'
+                root.manager.transition.direction = 'left'
+
+
+<CelsiusWindow>:
+    name: 'celsiuswindow'
+
+    FloatLayout:
+
+        MDBottomAppBar:
+            MDTopAppBar:
+                title: "Coverter Celsius"
+                type: 'bottom'
+                icon: "arrow-left-circle"
+                mode: 'end'
+                on_action_button:
+                    app.root.current = 'convertwindow'
+                    root.manager.transition.direction = 'right'
+                    on_press: root.clear()
+                
+        
+        MDTextButton:
+            text: 'Insira a temperatura em Graus Celsius:'
+            font_size: 25
+            pos_hint: {'center_x': 0.5,'center_y': 0.75}
+        
+            
+        MDTextField:
+            id: text_box
+            hint_text: "Temperatura em Celsius"
+            mode: "round"
+            multiline: False
+            pos_hint: {'center_x': 0.5,'center_y': 0.63}
+            size_hint: 0.3, 0.06
+        
+        MDRoundFlatButton:
+            text: 'Para Fahrenheit'
+            pos_hint: {'center_x': 0.30,'center_y': 0.51}
+            size_hint: 0.3, 0.1
+            on_press: root.toFahrenheit()
+        
+        MDRoundFlatButton:
+            text: 'Para Kelvin'
+            pos_hint: {'center_x': 0.70,'center_y': 0.51}
+            size_hint: 0.3, 0.1
+            on_press: root.toKelvin()
+        
+        MDLabel:
+            id: answer
+            text: ''
+            font_size: 40
+            color: '#FFAC1C'
+            halign: 'center'
+            pos_hint: {'center_x': 0.50,'center_y': 0.31}
+            
+
+
+<FahrenheitWindow>:
+    name: 'fahrenheitwindow'
+
+    FloatLayout:
+
+        MDBottomAppBar:
+            MDTopAppBar:
+                title: "Coverter Fahrenheit"
+                type: 'bottom'
+                icon: "arrow-left-circle"
+                mode: 'end'
+                on_action_button:
+                    app.root.current = 'convertwindow'
+                    root.manager.transition.direction = 'right'
+                    on_press: root.clear()
+                
+        
+        MDTextButton:
+            text: 'Insira a temperatura em Graus Fahrenheit:'
+            font_size: 25
+            pos_hint: {'center_x': 0.5,'center_y': 0.75}
+        
+            
+        MDTextField:
+            id: text_box
+            hint_text: "Temperatura em Fahrenheit"
+            mode: "round"
+            multiline: False
+            pos_hint: {'center_x': 0.5,'center_y': 0.63}
+            size_hint: 0.3, 0.06
+        
+        MDRoundFlatButton:
+            text: 'Para Celsius'
+            pos_hint: {'center_x': 0.30,'center_y': 0.51}
+            size_hint: 0.3, 0.1
+            on_press: root.toCelsius()
+        
+        MDRoundFlatButton:
+            text: 'Para Kelvin'
+            pos_hint: {'center_x': 0.70,'center_y': 0.51}
+            size_hint: 0.3, 0.1
+            on_press: root.toKelvin()
+        
+        MDLabel:
+            id: answer
+            text: ''
+            font_size: 40
+            color: '#FFAC1C'
+            halign: 'center'
+            pos_hint: {'center_x': 0.50,'center_y': 0.31}
+
+
+<KelvinWindow>:
+    name: 'kelvinwindow'
+
+    FloatLayout:
+
+        MDBottomAppBar:
+            MDTopAppBar:
+                title: "Coverter Kelvin"
+                type: 'bottom'
+                icon: "arrow-left-circle"
+                mode: 'end'
+                on_action_button:
+                    app.root.current = 'convertwindow'
+                    root.manager.transition.direction = 'right'
+                    on_press: root.clear()
+                
+        
+        MDTextButton:
+            text: 'Insira a temperatura em Graus Kelvin:'
+            font_size: 25
+            pos_hint: {'center_x': 0.5,'center_y': 0.75}
+        
+            
+        MDTextField:
+            id: text_box
+            hint_text: "Temperatura em Kelvin"
+            mode: "round"
+            multiline: False
+            pos_hint: {'center_x': 0.5,'center_y': 0.63}
+            size_hint: 0.3, 0.06
+        
+        MDRoundFlatButton:
+            text: 'Para Fahrenheit'
+            pos_hint: {'center_x': 0.30,'center_y': 0.51}
+            size_hint: 0.3, 0.1
+            on_press: root.toFahrenheit()
+        
+        MDRoundFlatButton:
+            text: 'Para Celsius'
+            pos_hint: {'center_x': 0.70,'center_y': 0.51}
+            size_hint: 0.3, 0.1
+            on_press: root.toCelsius()
+        
+        MDLabel:
+            id: answer
+            text: ''
+            font_size: 40
+            color: '#FFAC1C'
+            halign: 'center'
+            pos_hint: {'center_x': 0.50,'center_y': 0.31}
